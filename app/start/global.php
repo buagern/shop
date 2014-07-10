@@ -79,3 +79,14 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Our application logic.
+|--------------------------------------------------------------------------
+|
+| Events, Helpers, IoC, etc.
+|
+*/
+
+require app_path().'/buckets/start.php';

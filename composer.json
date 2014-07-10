@@ -9,6 +9,9 @@
 	},
 	"autoload": {
 		"classmap": [
+			"app/core",
+			"app/queues",
+			"app/libraries",
 			"app/commands",
 			"app/controllers",
 			"app/models",
