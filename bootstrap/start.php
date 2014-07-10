@@ -24,11 +24,36 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
+/*
 $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
 
 ));
+*/
+
+$env = $app->detectEnvironment(function() {
+
+	$environments = array(
+        'local'      => array('*.loc', '*.dev', 'localhost'),
+    );
+
+    $hostname = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
+
+    foreach ($environments as $environment => $hosts)
+    {
+        // To determine the current environment, we'll simply iterate through the possible
+        // environments and look for the host that matches the host for this request we
+        // are currently processing here, then return back these environment's names.
+        foreach ((array) $hosts as $host)
+        {
+            if (str_is($host, $hostname)) return $environment;
+        }
+    }
+
+    return 'local';
+    
+});
 
 /*
 |--------------------------------------------------------------------------
